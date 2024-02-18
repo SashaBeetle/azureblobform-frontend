@@ -7,6 +7,7 @@ export default function StateTextFields() {
 
   return (
     <Box
+      className='App-input' 
       component="form"
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
