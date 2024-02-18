@@ -17,3 +17,13 @@
   margin-top: 100px;
 }
 
+.hidden{
+  opacity: 0;
+  height: 0;
+  width: 0;
+  line-height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
