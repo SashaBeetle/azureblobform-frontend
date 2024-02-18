@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 const Header = () =>{
     return(
         <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{backgroundColor: "#191919"}}>
+        <AppBar sx={{backgroundColor: "#191919"}}>
           <Toolbar >
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               BLOB FORM
