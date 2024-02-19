@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function StateTextFields() {
-  const [name, setName] = React.useState('Cat in the Hat');
+  const [name, setName] = React.useState('');
 
   return (
     <Box
@@ -21,7 +21,7 @@ export default function StateTextFields() {
         color='primary'
         type="email"
         sx={{
-            "& .MuiOutlinedInput-input": { // Target the input field
+            "& .MuiOutlinedInput-input": {
             color: "white",
             },
         }}

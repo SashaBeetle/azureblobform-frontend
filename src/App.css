@@ -33,11 +33,21 @@
   margin-top: 10px;
 }
 
+#doc-img:hover{
+  cursor: pointer;
+}
+
 #doc-text{
   color: aliceblue;
+}
+
+#doc-text:hover{
+  cursor: pointer;
 }
 
 #butt-send{
   margin-left: 20px;
 }
+
+
 

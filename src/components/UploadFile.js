@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
@@ -8,12 +8,19 @@ import SendIcon from '@mui/icons-material/Send';
 const ApiUrl='https://localhost:7123/api/Storage/Upload'
 
 export const UploadFile = () =>{
+    const [changeButton, setChangeButton] = useState(true)
     const filePicker = useRef(null);
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleChange = (event) =>{
         console.log(event.target.files)
         setSelectedFile(event.target.files[0])
+
+        if(event.target.files[0] == null){
+            setChangeButton(true);
+        } else{
+            setChangeButton(false);
+        }
     };
 
     const handleSubmit = async (event) => {
@@ -37,6 +44,7 @@ export const UploadFile = () =>{
         } catch (error) {
           console.error("Error uploading file:", error);
         }
+        
       };
 
     const handlePick = () =>{
@@ -47,18 +55,23 @@ export const UploadFile = () =>{
     return(
         <>
             {selectedFile && (
-                <div>
-                    <img id="doc-img" src='doc.png'></img>
+                <div id="eden" onClick={handlePick} >
+                    
+                    <img id="doc-img"  src='doc.png'></img>
                     <h2 id="doc-text">{selectedFile.name}</h2> 
+                    
                 </div>
             )}
+            {changeButton ? 
             <Button component="label" onClick={handlePick} role={undefined} variant="contained" tabIndex={-1} startIcon={<CloudUploadIcon />}>
                 Select file
-            </Button>
-            <input type='file' className="hidden" ref={filePicker} onChange={handleChange} accept="document/*,.docx" />
-            <Button id='butt-send'variant="contained" onClick={handleSubmit} endIcon={<SendIcon />}> 
+            </Button> : 
+            <Button variant="contained" onClick={handleSubmit} endIcon={<SendIcon />}> 
                 Upload now! 
-            </Button>
+            </Button> }
+            
+            <div><input type='file' className="hidden" ref={filePicker} onChange={handleChange} accept="document/*,.docx" /></div>
+            
             
         </>
     )
