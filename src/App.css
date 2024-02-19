@@ -27,3 +27,17 @@
   margin: 0;
 }
 
+#doc-img{
+  height: 100px;
+  width: 100;
+  margin-top: 10px;
+}
+
+#doc-text{
+  color: aliceblue;
+}
+
+#butt-send{
+  margin-left: 20px;
+}
+
