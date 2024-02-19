@@ -2,6 +2,9 @@ import { useState, useRef } from "react";
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import SendIcon from '@mui/icons-material/Send';
+
+
 const ApiUrl='https://localhost:7123/api/Storage/Upload'
 
 export const UploadFile = () =>{
@@ -43,11 +46,20 @@ export const UploadFile = () =>{
     
     return(
         <>
+            {selectedFile && (
+                <div>
+                    <img id="doc-img" src='doc.png'></img>
+                    <h2 id="doc-text">{selectedFile.name}</h2> 
+                </div>
+            )}
             <Button component="label" onClick={handlePick} role={undefined} variant="contained" tabIndex={-1} startIcon={<CloudUploadIcon />}>
-                Upload file
+                Select file
             </Button>
             <input type='file' className="hidden" ref={filePicker} onChange={handleChange} accept="document/*,.docx" />
-            <div><button onClick={handleSubmit}>Upload now!</button></div>
+            <Button id='butt-send'variant="contained" onClick={handleSubmit} endIcon={<SendIcon />}> 
+                Upload now! 
+            </Button>
+            
         </>
     )
 };
