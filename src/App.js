@@ -1,9 +1,13 @@
 import './App.css';
 import Header from './components/Header';
-import { UploadFile, MyTextField } from './components/UploadFile';
+import { UploadFile } from './components/UploadFile';
 import TextInput from './components/TextInput';
+import Form from './components/Form'
+
+
 
 function App() {
+  
   return (
     
     
@@ -12,9 +16,7 @@ function App() {
         <Header />
       </header>
       <body className='App-body'>
-        {/* <MyTextField /> */}
-        <TextInput />
-        <UploadFile />
+        <Form />
       </body>
     </div>
   );
