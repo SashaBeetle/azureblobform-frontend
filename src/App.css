@@ -27,21 +27,17 @@
   margin: 0;
 }
 
-#doc-img{
+.doc-img{
   height: 100px;
   width: 100;
   margin-top: 10px;
 }
 
-#doc-img:hover{
-  cursor: pointer;
-}
-
-#doc-text{
+.doc-text{
   color: aliceblue;
 }
 
-#doc-text:hover{
+#doc-upload:hover{
   cursor: pointer;
 }
 
@@ -49,5 +45,7 @@
   margin-left: 20px;
 }
 
-
+.error-message {
+  color: red;
+}
 
