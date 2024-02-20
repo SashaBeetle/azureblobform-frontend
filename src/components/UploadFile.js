@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import * as React from 'react';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SendIcon from '@mui/icons-material/Send';
 
 
-const ApiUrl='https://localhost:7123/api/Storage/Upload'
+const ApiUrl= 'https://blobform.azurewebsites.net/api/Storage/Upload'
+const DocxFile = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 
 export const UploadFile = () =>{
     const [changeButton, setChangeButton] = useState(true)
@@ -14,13 +16,23 @@ export const UploadFile = () =>{
 
     const handleChange = (event) =>{
         console.log(event.target.files)
-        setSelectedFile(event.target.files[0])
-
+        
         if(event.target.files[0] == null){
             setChangeButton(true);
         } else{
+
+            if (event.target.files[0].type !== DocxFile) {
+                console.error("Invalid file format. Only .docx files are allowed.");
+    
+                return;
+              }
+    
             setChangeButton(false);
         }
+        
+        setSelectedFile(event.target.files[0])
+
+        
     };
 
     const handleSubmit = async (event) => {
@@ -55,17 +67,18 @@ export const UploadFile = () =>{
     return(
         <>
             {selectedFile && (
-                <div id="eden" onClick={handlePick} >
-                    
-                    <img id="doc-img"  src='doc.png'></img>
-                    <h2 id="doc-text">{selectedFile.name}</h2> 
-                    
+                <div>
+                    <img id="doc-upload" className="doc-img" src='doc.png' onClick={handlePick}></img>
+                    <h2 id="doc-upload" className='doc-text'onClick={handlePick} >{selectedFile.name}</h2> 
                 </div>
             )}
             {changeButton ? 
-            <Button component="label" onClick={handlePick} role={undefined} variant="contained" tabIndex={-1} startIcon={<CloudUploadIcon />}>
-                Select file
-            </Button> : 
+            <Box>
+                <Button component="label" onClick={handlePick} role={undefined} variant="contained" tabIndex={-1} startIcon={<CloudUploadIcon />}>
+                    Select file
+                </Button> 
+                <p  className="error-message">*we are accepting only .docx files!*</p>
+            </Box>: 
             <Button variant="contained" onClick={handleSubmit} endIcon={<SendIcon />}> 
                 Upload now! 
             </Button> }
