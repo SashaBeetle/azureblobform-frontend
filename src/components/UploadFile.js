@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SendIcon from '@mui/icons-material/Send';
+import FormAlert from './FormAlert'; 
 import { FormControl, InputLabel, OutlinedInput, FormHelperText } from '@mui/material';
 
 
@@ -17,6 +18,10 @@ const validateEmail = (email) => {
 
 export const UploadFile = () =>{
     const [changeButton, setChangeButton] = useState(false)
+
+    const [visible, setVisible] = useState(false);
+    const [isFileSent, setIsFileSent] = useState(true);
+
     const filePicker = useRef(null);
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -43,6 +48,19 @@ export const UploadFile = () =>{
   };
 
 }, [changeButton, error]);
+
+useEffect(() => {
+  if(visible){
+    const timer = setTimeout(() => {
+      setVisible(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  } 
+  
+
+  
+}, [visible]);
 
     const handleEmailChange = (event) => {
       setEmail(event.target.value);
@@ -88,11 +106,17 @@ export const UploadFile = () =>{
           if (response.ok) {
             const data = await response.json();
             console.log("File uploaded successfully:", data);
+            setVisible(true);
+            setIsFileSent(true)
           } else {
             console.error("Upload failed:", response.statusText);
+            setVisible(true);
+            setIsFileSent(false)
           }
         } catch (error) {
           console.error("Error uploading file:", error);
+          setVisible(true);
+          setIsFileSent(false)
         }
         
       };
@@ -169,7 +193,7 @@ export const UploadFile = () =>{
             
             <div><input type='file' className="hidden" ref={filePicker} onChange={handleChange} accept="document/*,.docx" /></div>
             
-            
+            <FormAlert  isFileSent={isFileSent} visible={visible}/>
         </>
     )
 };
