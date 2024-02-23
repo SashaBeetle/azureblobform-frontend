@@ -2,8 +2,8 @@ import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 
-
 export default function SimpleAlert({isFileSent, visible}) {
+
   return ( 
     <>
         { visible &&
