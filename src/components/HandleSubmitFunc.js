@@ -1,4 +1,6 @@
-const handleSubmitFunc = async (email, selectedFile, setVisible, setIsFileSent, ApiUrl) => {
+const handleSubmitFunc = async (email, selectedFile, setVisible, setIsFileSent, ApiUrl, setCircleVision ) => {
+    setCircleVision(true);
+  
     const formData = new FormData();
     formData.append("blob", selectedFile);
   
@@ -23,6 +25,7 @@ const handleSubmitFunc = async (email, selectedFile, setVisible, setIsFileSent, 
       setVisible(true);
       setIsFileSent(false);
     }
+    setCircleVision(false)
   };
   
   export default handleSubmitFunc;
