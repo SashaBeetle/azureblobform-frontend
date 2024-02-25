@@ -5,6 +5,7 @@ import UploadFileButton from "./UploadFileButton";
 import EmailForm from "./EmailForm";
 import handleSubmitFunc from "./HandleSubmitFunc";
 import handleChangeFunc from "./HandleChangeFunc";
+import DuringUploadFile from "./DuringUploadFile";
 
 
 const ApiUrl= 'https://blobform.azurewebsites.net/api/Storage/Upload'
@@ -20,6 +21,7 @@ export const UploadFile = () =>{
 
     const [visible, setVisible] = useState(false);
     const [isFileSent, setIsFileSent] = useState(true);
+    const [circleVision, setCircleVision] = useState(false)
 
     const filePicker = useRef(null);
     const [selectedFile, setSelectedFile] = useState(null);
@@ -65,7 +67,7 @@ useEffect(() => {
     };
 
     const handleFormSubmit = async () => {
-      await handleSubmitFunc(email, selectedFile, setVisible, setIsFileSent, ApiUrl);
+      await handleSubmitFunc(email, selectedFile, setVisible, setIsFileSent, ApiUrl, setCircleVision);
     };
 
     const handlePick = () =>{
@@ -89,12 +91,8 @@ useEffect(() => {
               handlePick={handlePick}
               handleChange={handleFileChange}
             />
-            <FormAlert  
-              isFileSent={isFileSent} 
-              visible={visible}
-            />
+            <FormAlert  isFileSent={isFileSent} visible={visible}/>
+            <DuringUploadFile circleVision={circleVision} />
         </>
     )
 };
-
- 
