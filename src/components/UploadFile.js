@@ -67,7 +67,7 @@ useEffect(() => {
     };
 
     const handleFormSubmit = async () => {
-      await handleSubmitFunc(email, selectedFile, setVisible, setIsFileSent, ApiUrl, setCircleVision);
+      await handleSubmitFunc(email, selectedFile, setVisible, setIsFileSent, ApiUrl, setCircleVision, setChangeMode);
     };
 
     const handlePick = () =>{

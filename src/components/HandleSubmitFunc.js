@@ -1,6 +1,13 @@
-const handleSubmitFunc = async (email, selectedFile, setVisible, setIsFileSent, ApiUrl, setCircleVision ) => {
+const handleSubmitFunc = async (email,
+   selectedFile, 
+   setVisible,
+   setIsFileSent,
+   ApiUrl,
+   setCircleVision,
+   setChangeMode ) => {
     setCircleVision(true);
-  
+    setChangeMode(false);
+
     const formData = new FormData();
     formData.append("blob", selectedFile);
   
@@ -26,6 +33,8 @@ const handleSubmitFunc = async (email, selectedFile, setVisible, setIsFileSent, 
       setIsFileSent(false);
     }
     setCircleVision(false)
+    setChangeMode(true);
+
   };
   
   export default handleSubmitFunc;
